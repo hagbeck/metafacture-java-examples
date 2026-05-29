@@ -1,8 +1,8 @@
 
 default namespacesFile = "sru4neo.namespaces.properties";
 
-default sourceFile = "data/inputPython.json";
-default targetFile = "data/sru4neo.output.xml";
+default sourceFile = "source.json";
+default targetFile = "result.xml";
 
 default fixFile = "sru4neo.fix";
 
