@@ -1,0 +1,192 @@
+{
+  "parameters": {
+    "query": {
+      "q": "TX:ubd*990171142550206441",
+      "rows": 10,
+      "page": 1
+    },
+    "queryId": "a824fabc-500d-46d0-bcc9-1dec7d605b90",
+    "language": "de",
+    "querySessionId": "08cd0b0b-99fd-4166-9ccc-c475381572f3.CegO1AXphrqdVu6oE56UHw=="
+  },
+  "hitsCount": {
+    "total": 1,
+    "start": 1
+  },
+  "results": [
+    {
+      "censored": false,
+      "sourceOfEnrichment": "lobid.org",
+      "collections": [
+        "printed library"
+      ],
+      "sources": [
+        "lobid"
+      ],
+      "identifierMain": "ir01785a:ubd.lobid:990171142550206441",
+      "identifierLocal": "HT015671602",
+      "titleDisplay": "FRBR : a guide for the perplexed",
+      "datePublished": "2008",
+      "isbn": [
+        "9780838909508",
+        "0838909507"
+      ],
+      "classification": [
+        {
+          "notation": "025.3",
+          "authority": "ddc"
+        }
+      ],
+      "subject": [
+        {
+          "subjectName": "Functional Requirements for Bibliographic Records",
+          "authority": "Gemeinsame Normdatei (GND)"
+        },
+        {
+          "subjectName": "FRBR (Conceptual model)"
+        }
+      ],
+      "contributor": [
+        {
+          "nameDisplay": "Maxwell, Robert L.",
+          "personIdentifier": [
+            {}
+          ],
+          "role": [
+            "Author"
+          ]
+        }
+      ],
+      "creationStatement": "Robert L. Maxwell",
+      "physicalDescription": "VII, 151 S. : graph. Darst.",
+      "documentType": [
+        "Books"
+      ],
+      "language": [
+        "Englisch"
+      ],
+      "publisher": [
+        {
+          "name": "American Library Association",
+          "location": "Chicago"
+        }
+      ],
+      "toc": "https://digitale-objekte.hbz-nrw.de/storage/2011/07/09/file_16/4219074.pdf",
+      "bibliographicCitation": [
+        {
+          "value": "ctx_ver=Z39.88-2004&ctx_enc=info%3Aofi%2Fenc%3AUTF-8&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=book&rft.title=FRBR+%3A+a+guide+for+the+perplexed&rft.externalDocID=ir01785a:ubd.lobid:990171142550206441&rft.language=Englisch&rft.contenttype=Books&rft.subject=Functional+Requirements+for+Bibliographic+Records&rft.subject=FRBR+%28Conceptual+model%29&rft.classification=ddc%3A025.3&rft.pub=American+Library+Association&rft.place=Chicago&rft.date=2008&rft.au=Maxwell%2C+Robert+L.&rft.isbn=9780838909508&rft.isbn=0838909507&rft.tpages=VII%2C+151+S.+%3A+graph.+Darst.",
+          "style": "enriched_openurl"
+        },
+        {
+          "value": "ctx_ver=Z39.88-2004&ctx_enc=info%3Aofi%2Fenc%3AUTF-8&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=book&rft.title=FRBR+%3A+a+guide+for+the+perplexed&rft.externalDocID=ir01785a:ubd.lobid:990171142550206441&rft.language=Englisch&rft.contenttype=Books&rft.subject=Functional+Requirements+for+Bibliographic+Records&rft.subject=FRBR+%28Conceptual+model%29&rft.classification=ddc%3A025.3&rft.pub=American+Library+Association&rft.place=Chicago&rft.date=2008&rft.au=Maxwell%2C+Robert+L.&rft.isbn=9780838909508&rft.isbn=0838909507&rft.tpages=VII%2C+151+S.+%3A+graph.+Darst.",
+          "style": "bookmark_openurl"
+        }
+      ],
+      "coverImage": [
+        {
+          "imageType": "thumb",
+          "imageUrl": "https://CWSImages.ingramcontent.com/cdsImages/imageloader?id=sI5JB7wUGldnzuYRzF7xc0P+erMI3wabvvS3lWsgJfOSInwuLQMR7m3nYkL/NpXnLzu7qUAEjOy+5Kpayq3wTvk8emsbS2X+bcXC1LpJfuKaINkX4gd6WIf2PVAJq+9I/DR3/2O+9ASPqQ/IldW+X7KHBVDxA9e+DWMDZ3l7PkU=&size=small"
+        },
+        {
+          "imageType": "medium",
+          "imageUrl": "https://CWSImages.ingramcontent.com/cdsImages/imageloader?id=sI5JB7wUGldnzuYRzF7xc0P+erMI3wabvvS3lWsgJfOSInwuLQMR7m3nYkL/NpXnLzu7qUAEjOy+5Kpayq3wTvk8emsbS2X+bcXC1LpJfuKaINkX4gd6WIf2PVAJq+9I/DR3/2O+9ASPqQ/IldW+X7KHBVDxA9e+DWMDZ3l7PkU="
+        }
+      ],
+      "availability": {
+        "simple": {
+          "statement": "ausleihbar/bestellbar"
+        },
+        "full": [
+          {
+            "requested": "https://www.ub.tu-dortmund.de/katalog/titel/991011741359706445",
+            "identifier": "https://www.ub.tu-dortmund.de/katalog/titel/991011741359706445",
+            "about": "FRBR / Robert L. Maxwell",
+            "editionStatement": "2008. - VII, 151 S. : graph. Darst.",
+            "items": [
+              {
+                "identifier": "https://www.ub.tu-dortmund.de/katalog/exemplar/991011741359706445#23199326600006445",
+                "availabilityStatus": "ausleihbar (nach Bestellung)",
+                "info": "Das Speichermagazin ist nicht \u00f6ffentlich zug\u00e4nglich. Sie k\u00f6nnen diesen Titel aus dem Speichermagazin an einen Standort der Universit\u00e4tsbibliothek Dortmund bestellen und dort abholen.",
+                "location": "Storage magazine / Main inventory",
+                "shelfmark": "Signatur: A 12200"
+              }
+            ],
+            "action": [
+              {
+                "label": "order",
+                "attributes": [
+                  {
+                    "key": "edition",
+                    "value": "https://www.ub.tu-dortmund.de/katalog/titel/991011741359706445"
+                  },
+                  {
+                    "key": "storage_id",
+                    "value": "https://lobid.org/organisation/DE-290/EFB"
+                  }
+                ]
+              },
+              {
+                "label": "order",
+                "attributes": [
+                  {
+                    "key": "edition",
+                    "value": "https://www.ub.tu-dortmund.de/katalog/titel/991011741359706445"
+                  },
+                  {
+                    "key": "storage_id",
+                    "value": "https://lobid.org/organisation/DE-290/S7"
+                  }
+                ]
+              },
+              {
+                "label": "order",
+                "attributes": [
+                  {
+                    "key": "edition",
+                    "value": "https://www.ub.tu-dortmund.de/katalog/titel/991011741359706445"
+                  },
+                  {
+                    "key": "storage_id",
+                    "value": "https://lobid.org/organisation/DE-290/CS"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "facets": [
+    {
+      "facetName": "Source",
+      "facetValues": [
+        {
+          "value": "Lobid",
+          "description": "Lobid",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "facetName": "MT",
+      "facetValues": [
+        {
+          "value": "books",
+          "description": "B\u00fccher und mehr",
+          "count": 100
+        }
+      ]
+    },
+    {
+      "facetName": "ContentProvider",
+      "facetValues": [
+        {
+          "value": "UBDo-Collection-02",
+          "description": "UBDo-Collection-02",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

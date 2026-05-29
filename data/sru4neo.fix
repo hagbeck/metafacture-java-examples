@@ -1,0 +1,282 @@
+#externe maps
+put_filemap("../data/ISO639-English.tsv", "lang", sep_char:"\t")
+
+add_hash("searchRetrieveResponse")
+add_field("searchRetrieveResponse.@xmlns", "http://www.loc.gov/zing/srw/")
+add_field("searchRetrieveResponse.version", "1.2")
+move_field("hitsCount.total", "searchRetrieveResponse.numberOfRecords")
+add_hash("searchRetrieveResponse.records")
+
+# --- marcXML records ---
+do list(path:"results[]", "var":"datensatz")
+    add_hash("searchRetrieveResponse.records.record.$append")
+
+    add_field("searchRetrieveResponse.records.record.$last.recordSchema", "marcxml")
+    add_field("searchRetrieveResponse.records.record.$last.recordPacking", "xml")
+
+    add_hash("searchRetrieveResponse.records.record.$last.recordData")
+    add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record")
+
+    add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.@xmlns:marc", "http://www.loc.gov/MARC21/slim")
+    add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:leader", "     cam  22     4  4500")
+	
+	#---controlfields---
+	add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$append")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.@tag", "001")
+	copy_field("datensatz.identifierMain", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.value")
+
+	add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$append")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.@tag", "003")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.value", "DE-290")
+	
+	add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$append")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.@tag", "005")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.value", "20230601093037.0")
+	
+	add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$append")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.@tag", "007")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.value", "tu")
+
+	add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$append")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.@tag", "008")
+	add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:controlfield.$last.value", "230601|2023||||||||||||o||||||||||ger||")
+	
+	#---datafields---
+	do list(path:"datensatz.isbn[]", "var":"isbn")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "020")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+	  move_field("isbn", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	do list(path:"datensatz.issn[]", "var":"issn")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "022")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+	  move_field("issn", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	do list(path:"datensatz.doi[]", "var":"doi")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "024")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "7")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "2")
+	  move_field("doi", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	do list(path:"datensatz.language[]", "var":"language")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "041")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		lookup("language", "lang")
+		move_field("language","searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	do list(path:"datensatz.classification[]", "var":"classification")
+		if any_equal("classification.authority", "ddc")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "082")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "0")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+			move_field("classification.notation", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		end
+		if any_equal("classification.authority", "Regensburger Verbundklassifikation (RVK)")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "084")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+			move_field("classification.notation", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "2")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value", "rvk")
+		end
+	end
+	
+	do list(path:"datensatz.contributor[]", "var":"contributor")
+		if any_match("contributor.role[]", "^(Autor\\*in|Author)$")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "100")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "1")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+			move_field("contributor.nameDisplay", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "4")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value", "aut")
+		elsif any_match("contributor.role[]", "^(Hrsg.|Editor)$")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "700")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "1")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+			move_field("contributor.nameDisplay", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "4")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value", "edt")
+		elsif any_match("contributor.role[]", "^(Übers.|Other|Contributor)$")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "700")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "1")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+			move_field("contributor.nameDisplay", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "4")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value", "ctb")
+		end
+	end
+	
+	if any_contain("datensatz.titleDisplay", ":")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "245")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "0")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", "4")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		copy_field("datensatz.titleDisplay", "titleCopyOne")
+		copy_field("datensatz.titleDisplay", "titleCopyTwo")
+		replace_all("titleCopyOne", " : .*", "")
+		move_field("titleCopyOne", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "b")
+		replace_all("titleCopyTwo", "^.*? : ", "")
+		move_field("titleCopyTwo", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		if exists(datensatz.creationStatement)
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "c")
+			move_field("datensatz.creationStatement", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		end
+    end
+	
+	if none_contain("datensatz.titleDisplay", " : ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "245")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "0")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", "4")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		move_field("datensatz.titleDisplay", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		if exists(datensatz.creationStatement)
+			add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "c")
+			move_field("datensatz.creationStatement", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		end
+    end
+
+	if exists("datensatz.editionStatement")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "250")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		move_field("datensatz.editionStatement","searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+
+	do list(path:"datensatz.publisher[]", "var":"pub")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "264")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", "1")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+	  move_field("pub.location", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "b")
+	  move_field("pub.name", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+	  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "c")
+	  move_field("datensatz.datePublished", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	if exists("datensatz.physicalDescription")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "300")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		move_field("datensatz.physicalDescription","searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	if exists("datensatz.relation[].titleDisplay")
+		do list(path:"datensatz.relation[]", "var":"relation")
+		  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "490")
+		  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+		  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		  move_field("relation.titleDisplay", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		  if exists("relation.volume")
+			  add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+			  add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "v")
+			  move_field("relation.volume", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+		  end
+		end
+	end
+	
+	if exists("datensatz.toc")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "505")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "0")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		move_field("datensatz.toc","searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	do list(path:"datensatz.abstract[]", "var":"abstract")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "520")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", " ")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		move_field("abstract", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	do list(path:"datensatz.subject[]", "var":"subject")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "650")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "4")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", " ")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "a")
+		move_field("subject.subjectName", "searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+	
+	if exists("datensatz.availability.simple.access")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@tag", "856")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind1", "4")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.@ind2", "0")
+		add_hash("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$append")
+		add_field("searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.@code", "u")
+		move_field("datensatz.availability.simple.access","searchRetrieveResponse.records.record.$last.recordData.marc:record.marc:datafield.$last.marc:subfield.$last.value")
+	end
+
+	copy_field("datensatz.identifierMain", "searchRetrieveResponse.records.record.$last.recordIdentifier")
+	#---Todo: recordPosition---
+
+end
+
+retain("searchRetrieveResponse")

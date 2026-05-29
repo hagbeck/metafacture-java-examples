@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.tu_dortmund.ub.data</groupId>
+    <artifactId>metafacture-engine</artifactId>
+    <version>1.8</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+
+        <metafacture.version>8.0.1</metafacture.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metamorph</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metafix</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metafacture-biblio</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metafacture-io</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metafacture-strings</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metafacture-xml</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metafacture</groupId>
+            <artifactId>metafacture-json</artifactId>
+            <version>${metafacture.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- ✅ Moderner Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <!-- ✅ Modernes Jar Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
